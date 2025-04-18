@@ -13,13 +13,12 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 
 public class FishTrackerHud {
-
     public void render(DrawContext drawContext, MinecraftClient client) {
         FishOnMCExtrasConfig config = FishOnMCExtrasConfig.getConfig();
         TextRenderer textRenderer = client.textRenderer;
 
         // Assemble all text lines
-        List<Text> textList = FishTrackerHudHandler.instance().assembleFishStats();
+        List<Text> textList = FishTrackerHudHandler.instance().assembleFishText();
 
         drawContext.getMatrices().push();
         try {
@@ -55,9 +54,9 @@ public class FishTrackerHud {
             int maxLength = textList.stream().map(textRenderer::getWidth).max(Integer::compareTo).get();
 
             if (rightAlignment) {
-                drawContext.fill(scaledX, scaledY, scaledX - maxLength - padding * 2, scaledY + (textList.size() * lineHeight) + padding * 2, alphaInt);
+                drawContext.fill(scaledX, scaledY, scaledX - maxLength - padding * 2, scaledY + ((textList.size() - 1) * lineHeight) + padding * 3, alphaInt);
             } else {
-                drawContext.fill(scaledX, scaledY, scaledX + maxLength + padding * 2, scaledY + (textList.size() * lineHeight) + padding * 2, alphaInt);
+                drawContext.fill(scaledX, scaledY, scaledX + maxLength + padding * 2, scaledY + ((textList.size() - 1) * lineHeight) + padding * 3, alphaInt);
             }
 
 

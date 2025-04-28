@@ -50,16 +50,19 @@ public class FishTrackerHud {
             AtomicInteger count = new AtomicInteger(0);
 
             int maxLength = textList.stream().map(textRenderer::getWidth).max(Integer::compareTo).get();
+            int heightClampTranslation = (int) ((padding * 2 + textList.size() * lineHeight) * yPercent);
+            heightClampTranslation -= (int) ((padding * 3) * (1 - yPercent));
 
             if (rightAlignment) {
-                drawContext.fill(scaledX, scaledY, scaledX - maxLength - padding * 2, scaledY + ((textList.size() - 1) * lineHeight) + padding * 3, alphaInt);
+                drawContext.fill(scaledX, scaledY - heightClampTranslation, scaledX - maxLength - padding * 2, scaledY + ((textList.size() - 1) * lineHeight) + padding * 3 - heightClampTranslation, alphaInt);
             } else {
-                drawContext.fill(scaledX, scaledY, scaledX + maxLength + padding * 2, scaledY + ((textList.size() - 1) * lineHeight) + padding * 3, alphaInt);
+                drawContext.fill(scaledX, scaledY - heightClampTranslation, scaledX + maxLength + padding * 2, scaledY + ((textList.size() - 1) * lineHeight) + padding * 3 - heightClampTranslation, alphaInt);
             }
 
 
+            int finalHeightClampTranslation = heightClampTranslation;
             textList.forEach(text -> {
-                drawContext.drawText(textRenderer, text, rightAlignment ? scaledX - textRenderer.getWidth(text) - padding: scaledX + padding, scaledY + (count.getAndIncrement() * lineHeight) + padding, 0xFFFFFF, true);
+                drawContext.drawText(textRenderer, text, rightAlignment ? scaledX - textRenderer.getWidth(text) - padding: scaledX + padding, scaledY + (count.getAndIncrement() * lineHeight) + padding - finalHeightClampTranslation, 0xFFFFFF, true);
             });
         } finally {
             drawContext.getMatrices().pop();

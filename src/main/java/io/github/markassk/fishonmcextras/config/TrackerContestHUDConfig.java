@@ -5,6 +5,7 @@ import me.shedaniel.autoconfig.annotation.ConfigEntry;
 public class TrackerContestHUDConfig {
     public static class ContestTracker {
         public boolean showContest = true;
+        @ConfigEntry.Gui.Tooltip
         public boolean showFullContest = true;
         public boolean rightAlignment = false;
         @ConfigEntry.BoundedDiscrete(min = 0, max = 100)

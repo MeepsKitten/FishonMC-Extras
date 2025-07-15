@@ -23,7 +23,7 @@ public class TextWidget extends ClickableWidget {
         this.clickCallback = null;
     }
 
-    public TextWidget(int x, int y, Text message, int color, boolean shadow, ClickCallback  clickCallback) {
+    public TextWidget(int x, int y, Text message, int color, boolean shadow, ClickCallback clickCallback) {
         super(x, y, 0, 0, message);
         this.textRenderer = MinecraftClient.getInstance().textRenderer;
         this.color = color;

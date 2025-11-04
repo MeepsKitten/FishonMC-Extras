@@ -423,11 +423,24 @@ public class ContestHandler {
         }
 
         String ordinal;
-        switch (digits) {
-            case "1": ordinal = "1st"; break;
-            case "2": ordinal = "2nd"; break;
-            case "3": ordinal = "3rd"; break;
-            default: ordinal = digits + "th"; break;
+        try {
+            int num = Integer.parseInt(digits);
+            
+            // Special cases: 11, 12, 13 always use "th"
+            if (num % 100 >= 11 && num % 100 <= 13) {
+                ordinal = num + "th";
+            } else {
+                // Otherwise, check the last digit
+                switch (num % 10) {
+                    case 1: ordinal = num + "st"; break;
+                    case 2: ordinal = num + "nd"; break;
+                    case 3: ordinal = num + "rd"; break;
+                    default: ordinal = num + "th"; break;
+                }
+            }
+        } catch (NumberFormatException e) {
+            // Fallback if parsing fails
+            ordinal = digits + "th";
         }
 
         // Compare with previous position to detect if it changed

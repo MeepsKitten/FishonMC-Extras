@@ -50,6 +50,9 @@ public class FishTrackerHudHandler {
         int displayLightningBottleCaughtCount = config.fishTracker.isFishTrackerOnTimer
                 ? profileData.lightningBottleCount
                 : profileData.allLightningBottleCount;
+        int displayInfusionCapsuleCaughtCount = config.fishTracker.isFishTrackerOnTimer
+                ? profileData.infusionCapsuleCount
+                : profileData.allInfusionCapsuleCount;
         Map<Constant, Integer> displayRarityCounts = config.fishTracker.isFishTrackerOnTimer
                 ? profileData.rarityCounts
                 : profileData.allRarityCounts;
@@ -73,6 +76,7 @@ public class FishTrackerHudHandler {
         int displayMelanisticCount = displayVariantCounts.getOrDefault(Constant.MELANISTIC, 0);
         int displayTrophyCount = displayVariantCounts.getOrDefault(Constant.TROPHY, 0);
         int displayFabledCount = displayVariantCounts.getOrDefault(Constant.FABLED, 0);
+        int displaySpookyCount = displayVariantCounts.getOrDefault(Constant.SPOOKY, 0);
 
         Map<Constant, Integer> displayRarityDryStreak = profileData.rarityDryStreak;
         Map<Constant, Integer> displayFishSizeDryStreak = profileData.fishSizeDryStreak;
@@ -92,6 +96,7 @@ public class FishTrackerHudHandler {
         int displayDryStreakMelanisticCount = displayVariantDryStreak.getOrDefault(Constant.MELANISTIC, 0);
         int displayDryStreakTrophyCount = displayVariantDryStreak.getOrDefault(Constant.TROPHY, 0);
         int displayDryStreakFabledCount = displayVariantDryStreak.getOrDefault(Constant.FABLED, 0);
+        int displayDryStreakSpookyCount = displayVariantDryStreak.getOrDefault(Constant.SPOOKY, 0);
 
         int displaySpecialCount = displayRarityCounts.getOrDefault(Constant.SPECIAL, 0);
         int displayDryStreakSpecialCount = displayRarityDryStreak.getOrDefault(Constant.SPECIAL, 0);
@@ -157,6 +162,7 @@ public class FishTrackerHudHandler {
         if(config.fishTracker.fishTrackerToggles.generalToggles.showPetCaught
                 || config.fishTracker.fishTrackerToggles.generalToggles.showShardCaught
                 || config.fishTracker.fishTrackerToggles.generalToggles.showLightningBottleCaught
+                || config.fishTracker.fishTrackerToggles.generalToggles.showInfusionCapsuleCaught
         ) {
             textList.add(Text.empty());
 
@@ -203,6 +209,16 @@ public class FishTrackerHudHandler {
                 ));
                 if(config.fishTracker.fishTrackerToggles.dryStreakToggles.showLightningBottle) {
                     textList.add(getDryStreak(profileData.lightningBottleDryStreak));
+                }
+            }
+
+            if(config.fishTracker.fishTrackerToggles.generalToggles.showInfusionCapsuleCaught) {
+                textList.add(TextHelper.concat(
+                        Text.literal("ɪɴꜰᴜѕɪᴏɴ ᴄᴀᴘѕᴜʟᴇѕ: ").formatted(Formatting.GRAY),
+                        Text.literal(String.valueOf(displayInfusionCapsuleCaughtCount)).formatted(Formatting.WHITE)
+                ));
+                if(config.fishTracker.fishTrackerToggles.dryStreakToggles.showInfusionCapsule) {
+                    textList.add(getDryStreak(profileData.infusionCapsuleDryStreak));
                 }
             }
         }
@@ -402,6 +418,17 @@ public class FishTrackerHudHandler {
                 ));
                 if(config.fishTracker.fishTrackerToggles.dryStreakToggles.showFabled) {
                     textList.add(getDryStreak(displayDryStreakFabledCount));
+                }
+            }
+            if(config.fishTracker.fishTrackerToggles.variantToggles.showSpooky) {
+                textList.add(TextHelper.concat(
+                        Constant.SPOOKY.TAG,
+                        Text.literal(" "),
+                        Text.literal(getNumber(displaySpookyCount)),
+                        getPercentage(displaySpookyCount, displayFishCaughtCount)
+                ));
+                if(config.fishTracker.fishTrackerToggles.dryStreakToggles.showSpooky) {
+                    textList.add(getDryStreak(displayDryStreakSpookyCount));
                 }
             }
         }

@@ -108,11 +108,16 @@ public class ContestHudHandler {
                         shouldShowDetails = false;
                         break;
                 }
-                if (!config.contestTracker.compactMode) {
+                boolean removeExtraSpacing = config.contestTracker.compact.removeExtraSpacing;
+                boolean mergeTypeAndLocation = config.contestTracker.compact.mergeTypeAndLocation;
+                boolean hideLocationWarning = config.contestTracker.compact.hideLocationWarning;
+                boolean combineRankLine = config.contestTracker.compact.combineRankLine;
+
+                if (!removeExtraSpacing) {
                     textList.add(Text.empty());
                 }
                 
-                if (config.contestTracker.compactMode) {
+                if (mergeTypeAndLocation) {
                     // Put type and location on the same row in compact mode
                     if (shouldShowDetails || config.contestTracker.contestStatsDisplay != TrackerContestHUDConfig.ContestStatsDisplay.AT_LOCATION) {
                         textList.add(TextHelper.concat(
@@ -144,8 +149,8 @@ public class ContestHudHandler {
                     }
                 }
                 
-                // Show warning if location doesn't match (skip in compact mode)
-                if (!locationMatches && !config.contestTracker.compactMode) {
+                // Show warning if location doesn't match (skip when hidden)
+                if (!locationMatches && !hideLocationWarning) {
                     textList.add(TextHelper.concat(
                             Text.literal("⚠ ").formatted(Formatting.YELLOW),
                             Text.literal("ɴᴏᴛ ɪɴ ᴀᴄᴛɪᴠᴇ ᴀʀᴇᴀ").formatted(Formatting.YELLOW)
@@ -156,7 +161,7 @@ public class ContestHudHandler {
                 
                 
                 if (shouldShowDetails) {
-                    if (!config.contestTracker.compactMode) {
+                    if (!removeExtraSpacing) {
                         textList.add(Text.empty());
                     }
                     // First place
@@ -228,7 +233,7 @@ public class ContestHudHandler {
                                 playerNameColor = Text.literal(MinecraftClient.getInstance().player.getName().getString()).formatted(Formatting.YELLOW);
                             }
                             
-                            if (config.contestTracker.compactMode) {
+                            if (combineRankLine) {
                                 // Combine rank and stat on same line in compact mode
                                 Text rankText = TextHelper.concat(
                                         Text.literal("ʏᴏᴜʀ ʀᴀɴᴋ: ").formatted(Formatting.GRAY),
@@ -281,7 +286,9 @@ public class ContestHudHandler {
                                         Text.literal(ContestHandler.instance().rankStat).formatted(Formatting.GRAY),
                                         Text.literal(")").formatted(Formatting.DARK_GRAY)
                                 ) : Text.empty());
-                                textList.add(Text.empty());
+                                if (!removeExtraSpacing) {
+                                    textList.add(Text.empty());
+                                }
                             }
                         }
                     }

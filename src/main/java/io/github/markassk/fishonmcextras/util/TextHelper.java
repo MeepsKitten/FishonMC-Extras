@@ -10,6 +10,7 @@ import net.minecraft.text.TextCodecs;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.util.Locale;
 import java.util.regex.Pattern;
 
 public class TextHelper {
@@ -24,21 +25,20 @@ public class TextHelper {
     }
 
     // Format to string
-    public static String fmt(float d)
-    {
+    public static String fmt(float d) {
         return String.format("%.0f", d);
     }
 
     public static String fmt(float d, int decimalPlaces) {
         switch (decimalPlaces) {
             case 1 -> {
-                return String.format("%.1f", d);
+                return String.format(Locale.US,"%.1f", d);
             }
             case 2 -> {
-                return String.format("%.2f", d);
+                return String.format(Locale.US,"%.2f", d);
             }
             default -> {
-                return String.format("%.0f", d);
+                return String.format(Locale.US,"%.0f", d);
             }
         }
     }
@@ -55,18 +55,19 @@ public class TextHelper {
 
     // Format to number string
     public static String fmnt(float d) {
-        if(d > 1000 && d < 1000000) {
-            String s = String.format("%.2f", d / 1000);
-            return (s.contains(".") ? s.replaceAll("0*$","").replaceAll("\\.$","") : s) + "K";
-        } else if (d > 1000000 && d < 1000000000 ){
-            String s =String.format("%.2f", d / 1000000);
-            return (s.contains(".") ? s.replaceAll("0*$","").replaceAll("\\.$","") : s) + "M";
+        if (d >= 1000 && d < 1000000) {
+            String s = String.format(Locale.US, "%.2f", d / 1000);
+            return s.replaceAll("0*$", "").replaceAll("[\\.,]$", "") + "K";
+        } else if (d > 1000000 && d < 1000000000) {
+            String s = String.format(Locale.US, "%.2f", d / 1000000);
+            return s.replaceAll("0*$", "").replaceAll("[\\.,]$", "") + "M";
         } else if (d > 1000000000) {
-            String s =String.format("%.2f", d / 1000000000);
-            return (s.contains(".") ? s.replaceAll("0*$","").replaceAll("\\.$","") : s) + "B";
+            String s = String.format(Locale.US, "%.2f", d / 1000000000);
+            return s.replaceAll("0*$", "").replaceAll("[\\.,]$", "") + "B";
+        } else if (d == 0) {
+            return "0";
         } else {
-            String s =String.format("%.0f", d);
-            return s.contains(".") ? s.replaceAll("0*$","").replaceAll("\\.$","") : s;
+            return String.format(Locale.US, "%.0f", d);
         }
     }
 
@@ -78,7 +79,8 @@ public class TextHelper {
     }
 
     public static String capitalize(String str) {
-        if(str == null || str.length()<=1) return str;
+        if (str == null || str.length() <= 1)
+            return str;
         return str.substring(0, 1).toUpperCase() + str.substring(1);
     }
 
@@ -96,13 +98,12 @@ public class TextHelper {
     public static String upperCaseAllFirstCharacter(String text) {
         String regex = "\\b(.)(.*?)\\b";
         return Pattern.compile(regex).matcher(text).replaceAll(
-                matched -> matched.group(1).toUpperCase() + matched.group(2)
-        );
+                matched -> matched.group(1).toUpperCase() + matched.group(2));
     }
 
     public static float roundFirstSignificantDigit(float input) {
         if (!Float.isNaN(input) && !Float.isInfinite(input)) {
-            if(input >= 0.1f || input == 0) {
+            if (input >= 0.1f || input == 0) {
                 return input;
             }
 
@@ -118,11 +119,16 @@ public class TextHelper {
     }
 
     public static String replaceToFoE(String text) {
-        if(text.contains(Constant.ANGLER.TAG.getString())) text = text.replace(Constant.ANGLER.TAG.getString(), Constant.FOE.TAG.getString());
-        if(text.contains(Constant.SAILOR.TAG.getString())) text = text.replace(Constant.SAILOR.TAG.getString(), Constant.FOE.TAG.getString());
-        if(text.contains(Constant.MARINER.TAG.getString())) text = text.replace(Constant.MARINER.TAG.getString(), Constant.FOE.TAG.getString());
-        if(text.contains(Constant.CAPTAIN.TAG.getString())) text = text.replace(Constant.CAPTAIN.TAG.getString(), Constant.FOE.TAG.getString());
-        if(text.contains(Constant.ADMIRAL.TAG.getString())) text = text.replace(Constant.ADMIRAL.TAG.getString(), Constant.FOE.TAG.getString());
+        if (text.contains(Constant.ANGLER.TAG.getString()))
+            text = text.replace(Constant.ANGLER.TAG.getString(), Constant.FOE.TAG.getString());
+        if (text.contains(Constant.SAILOR.TAG.getString()))
+            text = text.replace(Constant.SAILOR.TAG.getString(), Constant.FOE.TAG.getString());
+        if (text.contains(Constant.MARINER.TAG.getString()))
+            text = text.replace(Constant.MARINER.TAG.getString(), Constant.FOE.TAG.getString());
+        if (text.contains(Constant.CAPTAIN.TAG.getString()))
+            text = text.replace(Constant.CAPTAIN.TAG.getString(), Constant.FOE.TAG.getString());
+        if (text.contains(Constant.ADMIRAL.TAG.getString()))
+            text = text.replace(Constant.ADMIRAL.TAG.getString(), Constant.FOE.TAG.getString());
         return text;
     }
 }

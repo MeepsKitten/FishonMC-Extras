@@ -43,6 +43,16 @@ public class TextHelper {
         }
     }
 
+    // Parse float that handles both comma and period decimal separators
+    public static float parseFloat(String s) {
+        if (s == null || s.isEmpty()) {
+            throw new NumberFormatException("Cannot parse empty string");
+        }
+        // Replace comma with period for decimal separator
+        String normalized = s.trim().replace(',', '.');
+        return Float.parseFloat(normalized);
+    }
+
     // Format to number string
     public static String fmnt(float d) {
         if(d > 1000 && d < 1000000) {

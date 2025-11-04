@@ -58,10 +58,10 @@ public class TextHelper {
         if (d >= 1000 && d < 1000000) {
             String s = String.format(Locale.US, "%.2f", d / 1000);
             return s.replaceAll("0*$", "").replaceAll("[\\.,]$", "") + "K";
-        } else if (d > 1000000 && d < 1000000000) {
+        } else if (d >= 1000000 && d < 1000000000) {
             String s = String.format(Locale.US, "%.2f", d / 1000000);
             return s.replaceAll("0*$", "").replaceAll("[\\.,]$", "") + "M";
-        } else if (d > 1000000000) {
+        } else if (d >= 1000000000) {
             String s = String.format(Locale.US, "%.2f", d / 1000000000);
             return s.replaceAll("0*$", "").replaceAll("[\\.,]$", "") + "B";
         } else if (d == 0) {

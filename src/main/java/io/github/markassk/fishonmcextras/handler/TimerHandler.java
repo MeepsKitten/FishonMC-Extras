@@ -69,15 +69,16 @@ public class TimerHandler {
     }
 
     private long calculateMoonOffset() {
-        // Get current time in BST
+        // Use fixed UTC+1 offset (not timezone-dependent, avoids DST issues)
+        java.time.ZoneOffset utcPlus1 = java.time.ZoneOffset.ofHours(1);
         java.time.Instant now = java.time.Instant.now();
-        java.time.ZonedDateTime bstNow = now.atZone(java.time.ZoneId.of("Europe/London"));
+        java.time.ZonedDateTime utcPlus1Now = now.atZone(utcPlus1);
         
-        // Get midnight today in BST
-        java.time.ZonedDateTime midnightBST = bstNow.toLocalDate().atStartOfDay(java.time.ZoneId.of("Europe/London"));
+        // Get midnight today in UTC+1
+        java.time.ZonedDateTime midnightUTCPlus1 = utcPlus1Now.toLocalDate().atStartOfDay(utcPlus1);
         
-        // First moon event of the day is at 00:02 BST
-        java.time.ZonedDateTime firstMoonToday = midnightBST.plusMinutes(2);
+        // First moon event of the day is at 00:02 UTC+1
+        java.time.ZonedDateTime firstMoonToday = midnightUTCPlus1.plusMinutes(2);
         
         // Convert to milliseconds
         long firstMoonMillis = firstMoonToday.toInstant().toEpochMilli();

@@ -1,5 +1,6 @@
 package io.github.markassk.fishonmcextras.handler;
 
+import io.github.markassk.fishonmcextras.FishOnMCExtras;
 import io.github.markassk.fishonmcextras.config.FishOnMCExtrasConfig;
 import io.github.markassk.fishonmcextras.util.TextHelper;
 import net.minecraft.client.MinecraftClient;
@@ -15,6 +16,8 @@ public class EventHandler {
 
     public Map<WeatherEvent, Long> weatherEvents = new HashMap<>();
     public long weatherEventAlertTime = 0L;
+
+public WeatherEvent currentMoon = null;
 
     public String fabledLocation = "";
     public long fabledEventAlertTime = 0L;
@@ -46,8 +49,11 @@ public class EventHandler {
     }
 
     private void processWeatherEvents(Text text) {
+        String textString = text.getString();
+        
+        
         WeatherEvent foundEvent = Arrays.stream(WeatherEvent.values()).filter(weatherEvent -> text.getString().contains(weatherEvent.TEXT)).findFirst().orElse(null);
-
+    
         if(!config.eventTracker.weatherEventOptions.toggleOptions.rainbow && foundEvent == WeatherEvent.RAINBOW) foundEvent = null;
         if(!config.eventTracker.weatherEventOptions.toggleOptions.thunderstorm && foundEvent == WeatherEvent.THUNDERSTORM) foundEvent = null;
         if(!config.eventTracker.weatherEventOptions.toggleOptions.supercell && foundEvent == WeatherEvent.SUPERCELL) foundEvent = null;
@@ -58,17 +64,33 @@ public class EventHandler {
         if(!config.eventTracker.weatherEventOptions.toggleOptions.blueMoon && foundEvent == WeatherEvent.BLUE_MOON) foundEvent = null;
         if(!config.eventTracker.weatherEventOptions.toggleOptions.superMoon && foundEvent == WeatherEvent.SUPER_MOON) foundEvent = null;
         if(!config.eventTracker.weatherEventOptions.toggleOptions.bloodMoon && foundEvent == WeatherEvent.BLOOD_MOON) foundEvent = null;
-
+    
         // Check moon alerts mute override
         boolean isMoon = foundEvent == WeatherEvent.FULL_MOON || foundEvent == WeatherEvent.BLUE_MOON ||
-                         foundEvent == WeatherEvent.SUPER_MOON || foundEvent == WeatherEvent.BLOOD_MOON;
+                        foundEvent == WeatherEvent.SUPER_MOON || foundEvent == WeatherEvent.BLOOD_MOON;
+
+        if (isMoon && !textString.contains("» The ") && !textString.contains(" has set.")) {
+                this.currentMoon = foundEvent;
+                FishOnMCExtras.LOGGER.info("Current moon: " + foundEvent.TEXT);
+        } else if (isMoon) {
+                this.currentMoon = null;
+                FishOnMCExtras.LOGGER.info("Moon set");
+        }
+
+                        
         if (config.eventTracker.weatherEventOptions.muteMoonAlerts && isMoon) {
             foundEvent = null;
         }
-
+        
+    
         if(foundEvent != null) {
             weatherEvents.put(foundEvent, System.currentTimeMillis());
-
+            
+            // Set current moon if it's a moon event
+            if (isMoon) {
+                this.currentMoon = foundEvent;
+            }
+    
             weatherEventAlertTime = System.currentTimeMillis();
             if(config.eventTracker.weatherEventOptions.useAlertWarningSound) {
                 NotificationSoundHandler.instance().playSoundWarning(config.eventTracker.weatherEventOptions.alertSoundType, MinecraftClient.getInstance());
@@ -181,7 +203,7 @@ public class EventHandler {
         ),
         BLOOD_MOON("blood_moon", "BLOOD MOON » A Blood Moon has risen!", TextHelper.concat(
                 Text.literal("A ").formatted(Formatting.WHITE),
-                Text.literal("Super Moon ").formatted(Formatting.BOLD).withColor(0xE44848),
+                Text.literal("Blood Moon ").formatted(Formatting.BOLD).withColor(0xFF0000),
                 Text.literal("has risen!").formatted(Formatting.WHITE)),
                 TextHelper.concat(
                         Text.literal("+").formatted(Formatting.GRAY),

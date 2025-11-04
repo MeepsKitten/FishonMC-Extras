@@ -60,13 +60,18 @@ public class FishCatchHandler  {
         if(this.fishFound) {
             if (System.currentTimeMillis() - this.fishCaughtTime < 2000L) {
                 if (!this.isFull) {
+                    int checkedStacks = 0;
                     for (int i = minecraftClient.player.getInventory().main.size() - 1; i >= 0; i--) {
                         ItemStack stack = minecraftClient.player.getInventory().main.get(i);
                         if(stack.isEmpty()) {
                             continue;
                         }
+                        checkedStacks++;
                         this.processStack(stack, minecraftClient);
                         
+                    }
+                    if (checkedStacks > 0) {
+                        FishOnMCExtras.LOGGER.debug("[FoE] Checked {} stacks for fish catch", checkedStacks);
                     }
                 }
 
@@ -77,10 +82,11 @@ public class FishCatchHandler  {
                 
 
             } else {
+                FishOnMCExtras.LOGGER.warn("[FoE] Fish not found after 2s - title: '{}', subtitle: '{}', isFull: {}", 
+                    this.title.getString(), this.subtitle.getString(), this.isFull);
                 this.fishFound = false;
                 this.isFull = false;
                 this.updateTrackedFish(minecraftClient.player);   
-                FishOnMCExtras.LOGGER.error("[FoE] Fish not found");
             }
         }
 
@@ -153,6 +159,11 @@ public class FishCatchHandler  {
             ProfileDataHandler.instance().updateLightningBottleCaughtStatsOnCatch();
             FishOnMCExtras.LOGGER.info("[FoE] Tracking Shard");
         }
+
+        if(text.getString().startsWith("RARE CATCH! You pulled") && text.getString().contains("Infusion Capsule")) {
+            ProfileDataHandler.instance().updateInfusionCapsuleCaughtStatsOnCatch();
+            FishOnMCExtras.LOGGER.info("[FoE] Tracking Infusion Capsule");
+        }
         
         return false; // Don't suppress any messages
     }
@@ -163,6 +174,16 @@ public class FishCatchHandler  {
 
     private void processStack(ItemStack stack, MinecraftClient minecraftClient) {
         Fish fish = Fish.getFish(stack);
+        if (fish != null && this.fishFound) {
+            String stackName = stack.getName().getString();
+            String subtitle = this.subtitle.getString();
+            boolean catcherMatches = minecraftClient.player != null && Objects.equals(fish.catcher, minecraftClient.player.getUuid());
+            boolean notTracked = !trackFishList.contains(fish.id);
+            boolean subtitleMatches = subtitle.contains(stackName);
+            
+            FishOnMCExtras.LOGGER.info("[FoE] Found fish: {} (variant: {}) - catcher: {}, notTracked: {}, subtitleMatch: {} (subtitle: '{}' contains name: '{}')", 
+                stackName, fish.variant.ID, catcherMatches, notTracked, subtitleMatches, subtitle, stackName);
+        }
         if (fish != null
                 && minecraftClient.player != null
                 && Objects.equals(fish.catcher, minecraftClient.player.getUuid())

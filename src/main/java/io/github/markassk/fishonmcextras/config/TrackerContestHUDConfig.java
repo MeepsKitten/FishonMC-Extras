@@ -25,8 +25,18 @@ public class TrackerContestHUDConfig {
         @ConfigEntry.Gui.Tooltip
         @ConfigEntry.Gui.EnumHandler(option = ConfigEntry.Gui.EnumHandler.EnumDisplayOption.BUTTON)
         public ContestStatsDisplay contestStatsDisplay = ContestStatsDisplay.AT_LOCATION;
-        @ConfigEntry.Gui.Tooltip
-        public boolean compactMode = false;
+        @ConfigEntry.Gui.CollapsibleObject
+        public CompactDisplayOptions compact = new CompactDisplayOptions();
+        public static class CompactDisplayOptions {
+            @ConfigEntry.Gui.Tooltip
+            public boolean mergeTypeAndLocation = false;
+            @ConfigEntry.Gui.Tooltip
+            public boolean hideLocationWarning = false;
+            @ConfigEntry.Gui.Tooltip
+            public boolean removeExtraSpacing = false;
+            @ConfigEntry.Gui.Tooltip
+            public boolean combineRankLine = false;
+        }
         @ConfigEntry.Gui.Tooltip
         public boolean refreshOnContestPB = true;
         @ConfigEntry.Gui.Tooltip

@@ -10,6 +10,7 @@ import net.minecraft.text.TextCodecs;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.util.Locale;
 import java.util.regex.Pattern;
 
 public class TextHelper {
@@ -26,37 +27,41 @@ public class TextHelper {
     // Format to string
     public static String fmt(float d)
     {
-        return String.format("%.0f", d);
+        return String.format(Locale.US,"%.0f", d);
     }
 
     public static String fmt(float d, int decimalPlaces) {
         switch (decimalPlaces) {
             case 1 -> {
-                return String.format("%.1f", d);
+                String s = String.format(Locale.US,"%.1f", d);
+                return s.replaceAll("0*$", "").replaceAll("[.,]$", "");
             }
             case 2 -> {
-                return String.format("%.2f", d);
+                String s = String.format(Locale.US,"%.2f", d);
+                return s.replaceAll("0*$", "").replaceAll("[.,]$", "");
             }
             default -> {
-                return String.format("%.0f", d);
+                String s = String.format(Locale.US,"%.0f", d);
+                return s.replaceAll("0*$", "").replaceAll("[.,]$", "");
             }
         }
     }
 
     // Format to number string
     public static String fmnt(float d) {
-        if(d > 1000 && d < 1000000) {
-            String s = String.format("%.2f", d / 1000);
-            return (s.contains(".") ? s.replaceAll("0*$","").replaceAll("\\.$","") : s) + "K";
-        } else if (d > 1000000 && d < 1000000000 ){
-            String s =String.format("%.2f", d / 1000000);
-            return (s.contains(".") ? s.replaceAll("0*$","").replaceAll("\\.$","") : s) + "M";
+        if (d >= 1000 && d < 1000000) {
+            String s = String.format(Locale.US, "%.2f", d / 1000);
+            return s.replaceAll("0*$", "").replaceAll("[.,]$", "") + "K";
+        } else if (d > 1000000 && d < 1000000000) {
+            String s = String.format(Locale.US, "%.2f", d / 1000000);
+            return s.replaceAll("0*$", "").replaceAll("[.,]$", "") + "M";
         } else if (d > 1000000000) {
-            String s =String.format("%.2f", d / 1000000000);
-            return (s.contains(".") ? s.replaceAll("0*$","").replaceAll("\\.$","") : s) + "B";
+            String s = String.format(Locale.US, "%.2f", d / 1000000000);
+            return s.replaceAll("0*$", "").replaceAll("[.,]$", "") + "B";
+        } else if (d == 0) {
+            return "0";
         } else {
-            String s =String.format("%.0f", d);
-            return s.contains(".") ? s.replaceAll("0*$","").replaceAll("\\.$","") : s;
+            return String.format(Locale.US, "%.0f", d);
         }
     }
 

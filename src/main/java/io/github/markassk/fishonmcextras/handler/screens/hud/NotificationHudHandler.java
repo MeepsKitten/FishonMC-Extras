@@ -213,6 +213,27 @@ public class NotificationHudHandler {
                 });
             }
 
+            List<EventHandler.GenericEventState> activeGenericEvents = EventHandler.instance().getActiveGenericEvents();
+            if(!activeGenericEvents.isEmpty()) {
+                long now = System.currentTimeMillis();
+                activeGenericEvents.forEach(genericEventState -> {
+                    int seconds = genericEventState.remainingSeconds(now);
+                    if(seconds >= 0) {
+                        textList.add(Text.empty());
+                        // Split the text by newlines and add each line separately
+                        Text eventText = genericEventState.config().getText();
+                        List<Text> lines = TextHelper.splitByNewlines(eventText);
+                        textList.addAll(lines);
+                        textList.add(TextHelper.concat(
+                                Text.literal("ᴛʜɪѕ ᴀʟᴇʀᴛ ᴡɪʟʟ ʙᴇ ᴅɪѕᴍɪѕѕᴇᴅ ɪɴ ").formatted(Formatting.GRAY),
+                                Text.literal("" + seconds),
+                                Text.literal(" ѕᴇᴄᴏɴᴅѕ").formatted(Formatting.GRAY)
+                        ));
+                    }
+                });
+            }
+
+
             if(config.eventTracker.otherEventOptions.fabledOptions.showAlertHUD
                     && BossBarHandler.instance().currentLocation != Constant.CREW_ISLAND
                     && System.currentTimeMillis() - EventHandler.instance().fabledEventAlertTime <= config.eventTracker.otherEventOptions.fabledOptions.alertDismissSeconds * 1000L

@@ -142,6 +142,14 @@ public enum Constant {
             Text.literal("o").withColor(0x7C8083),
             Text.literal("l").withColor(0x787B7F),
             Text.literal("f Pet").withColor(0x73767B)), Defaults.DEFAULT_COLOR),
+    PELICAN("pelican", TextHelper.concat(
+            Text.literal("P").withColor(0xD9CBA6),
+            Text.literal("e").withColor(0xDFC59B),
+            Text.literal("l").withColor(0xE6BE90),
+            Text.literal("i").withColor(0xECB886),
+            Text.literal("c").withColor(0xF2B27B),
+            Text.literal("a").withColor(0xF9AB70),
+            Text.literal("n Pet").withColor(0xFFA565)), Defaults.DEFAULT_COLOR),
     CAPYBARA("capybara", TextHelper.concat(
             Text.literal("C").withColor(0x725E39),
             Text.literal("a").withColor(0x7F663F),

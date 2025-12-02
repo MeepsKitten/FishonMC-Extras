@@ -47,6 +47,7 @@ public class LocationHandler {
         else if (bossText.contains(Constant.KEY_WEST.TAG.getString())) return Constant.KEY_WEST;
         else if (bossText.contains(Constant.TOLEDO_BEND.TAG.getString())) return Constant.TOLEDO_BEND;
         else if (bossText.contains(Constant.GREAT_LAKES.TAG.getString())) return Constant.GREAT_LAKES;
+        else if (bossText.contains(Constant.OIL_RIG.TAG.getString())) return Constant.OIL_RIG;        
         else if (bossText.contains(Constant.DANUBE_RIVER.TAG.getString())) return Constant.DANUBE_RIVER;
         else if (bossText.contains(Constant.AMAZON_RIVER.TAG.getString())) return Constant.AMAZON_RIVER;
         else if (bossText.contains(Constant.MEDITERRANEAN_SEA.TAG.getString())) return Constant.MEDITERRANEAN_SEA;

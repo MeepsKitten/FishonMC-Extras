@@ -34,6 +34,7 @@ public enum Constant {
     KEY_WEST("keywest", Text.literal("Key West").withColor(0xFBF17C), Defaults.DEFAULT_COLOR),
     TOLEDO_BEND("toledobend", Text.literal("Toledo Bend Reservoir").withColor(0x99A7D0), Defaults.DEFAULT_COLOR),
     GREAT_LAKES("greatlakes", Text.literal("Great Lakes").withColor(0x3CABF3), Defaults.DEFAULT_COLOR),
+    OIL_RIG("oilrig", Text.literal("Oil Rig").withColor(0xCDBE01), Defaults.DEFAULT_COLOR),
     DANUBE_RIVER("danube", Text.literal("Danube River").withColor(0xFBC598), Defaults.DEFAULT_COLOR),
     AMAZON_RIVER("amazon", Text.literal("Amazon River").withColor(0x3EA729), Defaults.DEFAULT_COLOR),
     MEDITERRANEAN_SEA("mediterranean", Text.literal("Mediterranean Sea").withColor(0xF0FB37), Defaults.DEFAULT_COLOR),
@@ -140,6 +141,14 @@ public enum Constant {
             Text.literal("o").withColor(0x7C8083),
             Text.literal("l").withColor(0x787B7F),
             Text.literal("f Pet").withColor(0x73767B)), Defaults.DEFAULT_COLOR),
+    PELICAN("pelican", TextHelper.concat(
+            Text.literal("P").withColor(0xD8C99F),
+            Text.literal("e").withColor(0xE1C293),
+            Text.literal("l").withColor(0xEABA87),
+            Text.literal("i").withColor(0xF2B47C),
+            Text.literal("c").withColor(0xF9AD70),
+            Text.literal("a").withColor(0xFFA563),
+            Text.literal("n Pet").withColor(0xFF9E55)), Defaults.DEFAULT_COLOR),
     CAPYBARA("capybara", TextHelper.concat(
             Text.literal("C").withColor(0x725E39),
             Text.literal("a").withColor(0x7F663F),

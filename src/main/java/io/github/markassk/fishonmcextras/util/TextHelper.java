@@ -36,7 +36,7 @@ public class TextHelper {
                 String s = String.format(Locale.US,"%.1f", d);
                 return s.replaceAll("0*$", "").replaceAll("[.,]$", "");
             }
-            case 2 -> {
+                case 2 -> {
                 String s = String.format(Locale.US,"%.2f", d);
                 return s.replaceAll("0*$", "").replaceAll("[.,]$", "");
             }

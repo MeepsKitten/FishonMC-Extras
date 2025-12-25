@@ -73,6 +73,7 @@ public class FishTrackerHudHandler {
         int displayMelanisticCount = displayVariantCounts.getOrDefault(Constant.MELANISTIC, 0);
         int displayTrophyCount = displayVariantCounts.getOrDefault(Constant.TROPHY, 0);
         int displayFabledCount = displayVariantCounts.getOrDefault(Constant.FABLED, 0);
+        int displayFrozenCount = displayVariantCounts.getOrDefault(Constant.FROZEN, 0);
 
         Map<Constant, Integer> displayRarityDryStreak = profileData.rarityDryStreak;
         Map<Constant, Integer> displayFishSizeDryStreak = profileData.fishSizeDryStreak;
@@ -92,6 +93,7 @@ public class FishTrackerHudHandler {
         int displayDryStreakMelanisticCount = displayVariantDryStreak.getOrDefault(Constant.MELANISTIC, 0);
         int displayDryStreakTrophyCount = displayVariantDryStreak.getOrDefault(Constant.TROPHY, 0);
         int displayDryStreakFabledCount = displayVariantDryStreak.getOrDefault(Constant.FABLED, 0);
+        int displayDryStreakFrozenCount = displayVariantDryStreak.getOrDefault(Constant.FROZEN, 0);
 
         int displaySpecialCount = displayRarityCounts.getOrDefault(Constant.SPECIAL, 0);
         int displayDryStreakSpecialCount = displayRarityDryStreak.getOrDefault(Constant.SPECIAL, 0);
@@ -181,7 +183,7 @@ public class FishTrackerHudHandler {
             if (config.fishTracker.fishTrackerToggles.generalToggles.showShardCaught) {
                 textList.add(TextHelper.concat(
                         Text.literal("ѕʜᴀʀᴅѕ: ").formatted(Formatting.GRAY),
-                        Text.literal(String.valueOf(displayShardCaughtCount)).formatted(Formatting.WHITE)
+                        Text.literal(getNumber(displayShardCaughtCount)).formatted(Formatting.WHITE)
                 ));
                 if(config.fishTracker.fishTrackerToggles.dryStreakToggles.showShard) {
                     textList.add(getDryStreak(profileData.shardDryStreak));
@@ -402,6 +404,17 @@ public class FishTrackerHudHandler {
                 ));
                 if(config.fishTracker.fishTrackerToggles.dryStreakToggles.showFabled) {
                     textList.add(getDryStreak(displayDryStreakFabledCount));
+                }
+            }
+            if(config.fishTracker.fishTrackerToggles.variantToggles.showFrozen) {
+                textList.add(TextHelper.concat(
+                        Constant.FROZEN.TAG,
+                        Text.literal(" "),
+                        Text.literal(getNumber(displayFrozenCount)),
+                        getPercentage(displayFrozenCount, displayFishCaughtCount)
+                ));
+                if(config.fishTracker.fishTrackerToggles.dryStreakToggles.showFrozen) {
+                    textList.add(getDryStreak(displayDryStreakFrozenCount));
                 }
             }
         }

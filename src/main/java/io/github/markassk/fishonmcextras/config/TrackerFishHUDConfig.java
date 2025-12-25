@@ -65,6 +65,7 @@ public class TrackerFishHUDConfig {
                 public boolean showMelanistic = true;
                 public boolean showTrophy = true;
                 public boolean showFabled = true;
+                public boolean showFrozen = true;
                 public boolean showAlternate = false;
             }
 
@@ -89,6 +90,7 @@ public class TrackerFishHUDConfig {
                 public boolean showMelanistic = true;
                 public boolean showTrophy = true;
                 public boolean showFabled = true;
+                public boolean showFrozen = true;
                 public boolean showAlternate = true;
                 @ConfigEntry.Gui.PrefixText
                 public boolean showPet = false;

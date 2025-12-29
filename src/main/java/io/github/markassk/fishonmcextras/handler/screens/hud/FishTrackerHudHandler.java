@@ -275,14 +275,14 @@ public class FishTrackerHudHandler {
             }
 
             //EVENT FISHES
-            if(config.fishevents.rarityToggles.showSpecial) {
+            if(config.fishTracker.fishTrackerToggles.fisheventToggles.rarityToggles.showSpecial) {
                 textList.add(TextHelper.concat(
                         Constant.SPECIAL.TAG,
                         Text.literal(" "),
                         Text.literal(getNumber(displaySpecialCount)),
                         getPercentage(displaySpecialCount, displayFishCaughtCount)
                 ));
-                if(config.fishevents.dryStreakToggles.showSpecial){
+                if(config.fishTracker.fishTrackerToggles.fisheventToggles.dryStreakToggles.showSpecial){
                     textList.add(getDryStreak(displayDryStreakSpecialCount));
                 }
             }
@@ -397,36 +397,36 @@ public class FishTrackerHudHandler {
             }
 
             //EVENT FISHES
-            if(config.fishevents.variantToggles.showAlternate) {
+            if(config.fishTracker.fishTrackerToggles.fisheventToggles.variantToggles.showAlternate) {
                 textList.add(TextHelper.concat(
                         Constant.ALTERNATE.TAG,
                         Text.literal(" "),
                         Text.literal(getNumber(displayAlternateCount)),
                         getPercentage(displayAlternateCount, displayFishCaughtCount)
                 ));
-                if(config.fishevents.dryStreakToggles.showAlternate) {
+                if(config.fishTracker.fishTrackerToggles.fisheventToggles.dryStreakToggles.showAlternate) {
                     textList.add(getDryStreak(displayDryStreakAlternateCount));
                 }
             }
-            if(config.fishevents.variantToggles.showSpooky) {
+            if(config.fishTracker.fishTrackerToggles.fisheventToggles.variantToggles.showSpooky) {
                 textList.add(TextHelper.concat(
                         Constant.SPOOKY.TAG,
                         Text.literal(" "),
                         Text.literal(getNumber(displaySpookyCount)),
                         getPercentage(displaySpookyCount, displayFishCaughtCount)
                 ));
-                if(config.fishevents.dryStreakToggles.showSpooky) {
+                if(config.fishTracker.fishTrackerToggles.fisheventToggles.dryStreakToggles.showSpooky) {
                     textList.add(getDryStreak(displayDryStreakSpookyCount));
                 }
             }
-            if(config.fishevents.variantToggles.showFrozen) {
+            if(config.fishTracker.fishTrackerToggles.fisheventToggles.variantToggles.showFrozen) {
                 textList.add(TextHelper.concat(
                         Constant.FROZEN.TAG,
                         Text.literal(" "),
                         Text.literal(getNumber(displayFrozenCount)),
                         getPercentage(displayFrozenCount, displayFishCaughtCount)
                 ));
-                if(config.fishevents.dryStreakToggles.showFrozen) {
+                if(config.fishTracker.fishTrackerToggles.fisheventToggles.dryStreakToggles.showFrozen) {
                     textList.add(getDryStreak(displayDryStreakFrozenCount));
                 }
             }

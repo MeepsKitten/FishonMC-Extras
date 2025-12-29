@@ -93,6 +93,37 @@ public class TrackerFishHUDConfig {
             }
 
             @ConfigEntry.Gui.CollapsibleObject
+            public FishEventToggles fisheventToggles = new FishEventToggles();
+            public static class FishEventToggles {
+                @ConfigEntry.Gui.CollapsibleObject
+                public RarityToggles rarityToggles = new RarityToggles();
+                public static class RarityToggles {
+                    @ConfigEntry.Gui.Tooltip
+                    public boolean showSpecial = false;
+                }
+
+                @ConfigEntry.Gui.CollapsibleObject
+                public VariantToggles variantToggles = new VariantToggles();
+                public static class VariantToggles {
+                    @ConfigEntry.Gui.Tooltip
+                    public boolean showAlternate = false;
+                    @ConfigEntry.Gui.Tooltip
+                    public boolean showSpooky = false;
+                    @ConfigEntry.Gui.Tooltip
+                    public boolean showFrozen = true;
+                }
+
+                @ConfigEntry.Gui.CollapsibleObject
+                public DryStreakToggles dryStreakToggles = new DryStreakToggles();
+                public static class DryStreakToggles {
+                    public boolean showSpecial = true;
+                    public boolean showAlternate = true;
+                    public boolean showSpooky = true;
+                    public boolean showFrozen = true;
+                }
+            }
+
+            @ConfigEntry.Gui.CollapsibleObject
             public OtherToggles otherToggles = new OtherToggles();
             public static class OtherToggles {
                 public boolean showPercentages = true;

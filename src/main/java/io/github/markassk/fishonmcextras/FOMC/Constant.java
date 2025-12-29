@@ -22,6 +22,8 @@ public enum Constant {
     EPIC("epic", Text.literal("\uF035").formatted(Formatting.WHITE), 0x1CD832),
     LEGENDARY("legendary", Text.literal("\uF036").formatted(Formatting.WHITE), 0xD98103),
     MYTHICAL("mythical", Text.literal("\uF037").formatted(Formatting.WHITE), 0xC93832),
+
+    // Event Rarities
     SPECIAL("special", Text.literal("\uF092").formatted(Formatting.WHITE), 0xDD7ACF),
 
     // Location
@@ -60,8 +62,12 @@ public enum Constant {
     MELANISTIC("melanistic", Text.literal("\uF042").formatted(Formatting.WHITE), Defaults.DEFAULT_COLOR),
     TROPHY("trophy", Text.literal("\uF043").formatted(Formatting.WHITE), Defaults.DEFAULT_COLOR),
     FABLED("fabled", Text.literal("\uF044").formatted(Formatting.WHITE), Defaults.DEFAULT_COLOR),
-    FROZEN("frozen", Text.literal("\uF179").formatted(Formatting.WHITE), Defaults.DEFAULT_COLOR),
+
+    // Event Variants
     ALTERNATE("alternate", Text.literal("\uF098").formatted(Formatting.WHITE), Defaults.DEFAULT_COLOR),
+    SPOOKY("spooky", Text.literal("\uF102").formatted(Formatting.WHITE), Defaults.DEFAULT_COLOR),
+    FROZEN("frozen", Text.literal("\uF179").formatted(Formatting.WHITE), Defaults.DEFAULT_COLOR),
+
 
     // Pet Rating
     SICKLY("sickly", Text.literal("sɪᴄᴋʟʏ").withColor(0xFF74403B), 0xFF74403B),

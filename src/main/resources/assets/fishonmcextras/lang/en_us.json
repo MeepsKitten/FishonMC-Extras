@@ -14,6 +14,7 @@
   "text.autoconfig.fishonmcextras.category.other": "Miscellaneous",
   "text.autoconfig.fishonmcextras.category.cosmetic": "Cosmetics",
   "text.autoconfig.fishonmcextras.category.fun": "Experimental",
+  "text.autoconfig.fishonmcextras.category.fishevents": "Fish Events",
 
   "text.autoconfig.fishonmcextras.option.fishTracker": "§f§lFish Tracker Options",
   "text.autoconfig.fishonmcextras.option.fishTracker.showFishTrackerHUD": "Fish Tracker HUD",
@@ -43,7 +44,6 @@
   "text.autoconfig.fishonmcextras.option.fishTracker.fishTrackerToggles.rarityToggles.showEpic": "Show §f\uF035",
   "text.autoconfig.fishonmcextras.option.fishTracker.fishTrackerToggles.rarityToggles.showLegendary": "Show §f\uF036",
   "text.autoconfig.fishonmcextras.option.fishTracker.fishTrackerToggles.rarityToggles.showMythical": "Show §f\uF037",
-  "text.autoconfig.fishonmcextras.option.fishTracker.fishTrackerToggles.rarityToggles.showSpecial": "Show §f\uF092",
   "text.autoconfig.fishonmcextras.option.fishTracker.fishTrackerToggles.fishSizeToggles": "§f§lFish Size Toggles",
   "text.autoconfig.fishonmcextras.option.fishTracker.fishTrackerToggles.fishSizeToggles.showFishSizes": "§lShow Fish Sizes",
   "text.autoconfig.fishonmcextras.option.fishTracker.fishTrackerToggles.fishSizeToggles.showFishSizes.@Tooltip": "Toggle to see fish sizes section.\n§7If §cdisabled§7, all below options will not show.",
@@ -59,8 +59,6 @@
   "text.autoconfig.fishonmcextras.option.fishTracker.fishTrackerToggles.variantToggles.showMelanistic": "Show §f\uF042",
   "text.autoconfig.fishonmcextras.option.fishTracker.fishTrackerToggles.variantToggles.showTrophy": "Show §f\uF043",
   "text.autoconfig.fishonmcextras.option.fishTracker.fishTrackerToggles.variantToggles.showFabled": "Show §f\uF044",
-  "text.autoconfig.fishonmcextras.option.fishTracker.fishTrackerToggles.variantToggles.showFrozen": "Show §f\uF179",
-  "text.autoconfig.fishonmcextras.option.fishTracker.fishTrackerToggles.variantToggles.showAlternate": "Show §f\uF098",
   "text.autoconfig.fishonmcextras.option.fishTracker.fishTrackerToggles.dryStreakToggles": "§f§lDrystreak Toggles",
   "text.autoconfig.fishonmcextras.option.fishTracker.fishTrackerToggles.dryStreakToggles.showCommon.@PrefixText": "§fRarities",
   "text.autoconfig.fishonmcextras.option.fishTracker.fishTrackerToggles.dryStreakToggles.showCommon": "Show §f\uF033",
@@ -68,7 +66,6 @@
   "text.autoconfig.fishonmcextras.option.fishTracker.fishTrackerToggles.dryStreakToggles.showEpic": "Show §f\uF035",
   "text.autoconfig.fishonmcextras.option.fishTracker.fishTrackerToggles.dryStreakToggles.showLegendary": "Show §f\uF036",
   "text.autoconfig.fishonmcextras.option.fishTracker.fishTrackerToggles.dryStreakToggles.showMythical": "Show §f\uF037",
-  "text.autoconfig.fishonmcextras.option.fishTracker.fishTrackerToggles.dryStreakToggles.showSpecial": "Show §f\uF092",
   "text.autoconfig.fishonmcextras.option.fishTracker.fishTrackerToggles.dryStreakToggles.showBaby.@PrefixText": "§fFish Sizes",
   "text.autoconfig.fishonmcextras.option.fishTracker.fishTrackerToggles.dryStreakToggles.showBaby": "Show §fʙᴀʙʏ",
   "text.autoconfig.fishonmcextras.option.fishTracker.fishTrackerToggles.dryStreakToggles.showJuvenile": "Show §fᴊᴜᴠᴇɴɪʟᴇ",
@@ -80,8 +77,6 @@
   "text.autoconfig.fishonmcextras.option.fishTracker.fishTrackerToggles.dryStreakToggles.showMelanistic": "Show §f\uF042",
   "text.autoconfig.fishonmcextras.option.fishTracker.fishTrackerToggles.dryStreakToggles.showTrophy": "Show §f\uF043",
   "text.autoconfig.fishonmcextras.option.fishTracker.fishTrackerToggles.dryStreakToggles.showFabled": "Show §f\uF044",
-  "text.autoconfig.fishonmcextras.option.fishTracker.fishTrackerToggles.dryStreakToggles.showFrozen": "Show §f\uF179",
-  "text.autoconfig.fishonmcextras.option.fishTracker.fishTrackerToggles.dryStreakToggles.showAlternate": "Show §f\uF098",
   "text.autoconfig.fishonmcextras.option.fishTracker.fishTrackerToggles.dryStreakToggles.showPet.@PrefixText": "§fOther",
   "text.autoconfig.fishonmcextras.option.fishTracker.fishTrackerToggles.dryStreakToggles.showPet": "Show Pets",
   "text.autoconfig.fishonmcextras.option.fishTracker.fishTrackerToggles.dryStreakToggles.showShard": "Show Shards",
@@ -324,5 +319,24 @@
   "text.autoconfig.fishonmcextras.option.fun.biteBobber.@Tooltip": "§7This will §cdisable§7 the bite notification from the HUD",
   "text.autoconfig.fishonmcextras.option.fun.lightOnBobber": "Make bobber emit a light source",
   "text.autoconfig.fishonmcextras.option.fun.lightLevel": "Light level of the light source on bobber",
-  "text.autoconfig.fishonmcextras.option.fun.useCustomTitleScreen": "Use FoE Custom Title Screen"
+  "text.autoconfig.fishonmcextras.option.fun.useCustomTitleScreen": "Use FoE Custom Title Screen",
+
+  "text.autoconfig.fishonmcextras.option.fishevents": "§f§lFish Event Options",
+  "text.autoconfig.fishonmcextras.option.fishevents.rarityToggles": "§f§lFish Rarity Toggles",
+  "text.autoconfig.fishonmcextras.option.fishevents.rarityToggles.showSpecial": "Show §f\uF092",
+  "text.autoconfig.fishonmcextras.option.fishevents.rarityToggles.showSpecial.@Tooltip": "§7Make sure you have Rarities §aenabled §7in Trackers -> Fish Tracker Options -> HUD Toggles -> Rarity Toggles",
+
+  "text.autoconfig.fishonmcextras.option.fishevents.variantToggles": "§f§lFish Variant Toggles",
+  "text.autoconfig.fishonmcextras.option.fishevents.variantToggles.showAlternate": "Show §f\uF098",
+  "text.autoconfig.fishonmcextras.option.fishevents.variantToggles.showAlternate.@Tooltip": "§7Make sure you have Variants §aenabled in §7Trackers -> Fish Tracker Options -> HUD Toggles -> Variant Toggles",
+  "text.autoconfig.fishonmcextras.option.fishevents.variantToggles.showSpooky": "Show §f\uF102",
+  "text.autoconfig.fishonmcextras.option.fishevents.variantToggles.showSpooky.@Tooltip": "§7Make sure you have Variants §aenabled in §7Trackers -> Fish Tracker Options -> HUD Toggles -> Variant Toggles",
+  "text.autoconfig.fishonmcextras.option.fishevents.variantToggles.showFrozen": "Show §f\uF179",
+  "text.autoconfig.fishonmcextras.option.fishevents.variantToggles.showFrozen.@Tooltip": "§7Make sure you have Variants §aenabled §7in Trackers -> Fish Tracker Options -> HUD Toggles -> Variant Toggles",
+
+  "text.autoconfig.fishonmcextras.option.fishevents.dryStreakToggles": "§f§lFish Drystreak Toggles",
+  "text.autoconfig.fishonmcextras.option.fishevents.dryStreakToggles.showSpecial": "Show §f\uF092",
+  "text.autoconfig.fishonmcextras.option.fishevents.dryStreakToggles.showAlternate": "Show §f\uF098",
+  "text.autoconfig.fishonmcextras.option.fishevents.dryStreakToggles.showSpooky": "Show §f\uF102",
+  "text.autoconfig.fishonmcextras.option.fishevents.dryStreakToggles.showFrozen": "Show §f\uF179"
 }

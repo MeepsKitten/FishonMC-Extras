@@ -7,6 +7,7 @@ public class ConfigConstants {
     public static final String OTHER = "other";
     public static final String COSMETIC = "cosmetic";
     public static final String FUN = "fun";
+    public static final String FISHEVENTS = "fishevents";
 
     public static final boolean DEV = false;
 }

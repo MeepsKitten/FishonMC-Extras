@@ -149,4 +149,10 @@ public class FishOnMCExtrasConfig implements ConfigData {
     @ConfigEntry.Gui.Excluded
     public boolean isTimerButtonMenuOpen = true;
     //endregion
+
+    //region Fish Events
+    @ConfigEntry.Category(value = FISHEVENTS)
+    @ConfigEntry.Gui.CollapsibleObject
+    public FishEventsConfig.Fishevents fishevents = new FishEventsConfig.Fishevents();
+    //endregion
 }

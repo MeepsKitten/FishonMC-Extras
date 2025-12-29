@@ -41,7 +41,6 @@ public class TrackerFishHUDConfig {
                 public boolean showEpic = true;
                 public boolean showLegendary = true;
                 public boolean showMythical = true;
-                public boolean showSpecial = false;
             }
 
             @ConfigEntry.Gui.CollapsibleObject
@@ -65,8 +64,6 @@ public class TrackerFishHUDConfig {
                 public boolean showMelanistic = true;
                 public boolean showTrophy = true;
                 public boolean showFabled = true;
-                public boolean showFrozen = true;
-                public boolean showAlternate = false;
             }
 
             @ConfigEntry.Gui.CollapsibleObject
@@ -78,7 +75,6 @@ public class TrackerFishHUDConfig {
                 public boolean showEpic = false;
                 public boolean showLegendary = false;
                 public boolean showMythical = false;
-                public boolean showSpecial = true;
                 @ConfigEntry.Gui.PrefixText
                 public boolean showBaby = false;
                 public boolean showJuvenile = false;
@@ -90,8 +86,6 @@ public class TrackerFishHUDConfig {
                 public boolean showMelanistic = true;
                 public boolean showTrophy = true;
                 public boolean showFabled = true;
-                public boolean showFrozen = true;
-                public boolean showAlternate = true;
                 @ConfigEntry.Gui.PrefixText
                 public boolean showPet = false;
                 public boolean showShard = false;

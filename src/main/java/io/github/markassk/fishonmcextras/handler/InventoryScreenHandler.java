@@ -229,7 +229,7 @@ public class InventoryScreenHandler {
                             Text.literal("Requires atleast ").formatted(Formatting.WHITE, Formatting.ITALIC),
                             Text.literal(Constant.MARINER.TAG.getString()).formatted(Formatting.WHITE)
                     )), minecraftClient));
-            clickableWidgets.add(assembleButton( buttonSize * 3, 0, Text.literal("✎").formatted(Formatting.YELLOW, Formatting.BOLD), "presets", Tooltip.of(
+            clickableWidgets.add(assembleButton( buttonSize * 3, 0, Text.literal("✎").formatted(Formatting.GREEN, Formatting.BOLD), "presets", Tooltip.of(
                     TextHelper.concat(
                             Text.literal("Presets\n").formatted(Formatting.BOLD, Formatting.WHITE),
                             Text.literal("Presets stores your armor and rod parts.").formatted(Formatting.GRAY, Formatting.ITALIC)

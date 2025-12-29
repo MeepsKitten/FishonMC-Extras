@@ -73,7 +73,6 @@ public class FishTrackerHudHandler {
         int displayMelanisticCount = displayVariantCounts.getOrDefault(Constant.MELANISTIC, 0);
         int displayTrophyCount = displayVariantCounts.getOrDefault(Constant.TROPHY, 0);
         int displayFabledCount = displayVariantCounts.getOrDefault(Constant.FABLED, 0);
-        int displayFrozenCount = displayVariantCounts.getOrDefault(Constant.FROZEN, 0);
 
         Map<Constant, Integer> displayRarityDryStreak = profileData.rarityDryStreak;
         Map<Constant, Integer> displayFishSizeDryStreak = profileData.fishSizeDryStreak;
@@ -93,13 +92,18 @@ public class FishTrackerHudHandler {
         int displayDryStreakMelanisticCount = displayVariantDryStreak.getOrDefault(Constant.MELANISTIC, 0);
         int displayDryStreakTrophyCount = displayVariantDryStreak.getOrDefault(Constant.TROPHY, 0);
         int displayDryStreakFabledCount = displayVariantDryStreak.getOrDefault(Constant.FABLED, 0);
-        int displayDryStreakFrozenCount = displayVariantDryStreak.getOrDefault(Constant.FROZEN, 0);
 
         int displaySpecialCount = displayRarityCounts.getOrDefault(Constant.SPECIAL, 0);
         int displayDryStreakSpecialCount = displayRarityDryStreak.getOrDefault(Constant.SPECIAL, 0);
 
         int displayAlternateCount = displayVariantCounts.getOrDefault(Constant.ALTERNATE, 0);
         int displayDryStreakAlternateCount = displayVariantDryStreak.getOrDefault(Constant.ALTERNATE, 0);
+
+        int displaySpookyCount = displayVariantCounts.getOrDefault(Constant.SPOOKY, 0);
+        int displayDryStreakSpookyCount = displayVariantDryStreak.getOrDefault(Constant.SPOOKY, 0);
+
+        int displayFrozenCount = displayVariantCounts.getOrDefault(Constant.FROZEN, 0);
+        int displayDryStreakFrozenCount = displayVariantDryStreak.getOrDefault(Constant.FROZEN, 0);
 
         int displayTimerFishCaughtCount = profileData.timerFishCaughtCount;
 
@@ -269,32 +273,17 @@ public class FishTrackerHudHandler {
                     textList.add(getDryStreak(displayDryStreakMythicalCount));
                 }
             }
-        }
 
-        if(config.fishTracker.fishTrackerToggles.rarityToggles.showSpecial || config.fishTracker.fishTrackerToggles.variantToggles.showAlternate) {
-            textList.add(Text.empty());
-
-            if(config.fishTracker.fishTrackerToggles.rarityToggles.showSpecial) {
+            //EVENT FISHES
+            if(config.fishevents.rarityToggles.showSpecial) {
                 textList.add(TextHelper.concat(
                         Constant.SPECIAL.TAG,
                         Text.literal(" "),
                         Text.literal(getNumber(displaySpecialCount)),
                         getPercentage(displaySpecialCount, displayFishCaughtCount)
                 ));
-                if(config.fishTracker.fishTrackerToggles.dryStreakToggles.showSpecial){
+                if(config.fishevents.dryStreakToggles.showSpecial){
                     textList.add(getDryStreak(displayDryStreakSpecialCount));
-                }
-            }
-
-            if(config.fishTracker.fishTrackerToggles.variantToggles.showAlternate) {
-                textList.add(TextHelper.concat(
-                        Constant.ALTERNATE.TAG,
-                        Text.literal(" "),
-                        Text.literal(getNumber(displayAlternateCount)),
-                        getPercentage(displayAlternateCount, displayFishCaughtCount)
-                ));
-                if(config.fishTracker.fishTrackerToggles.dryStreakToggles.showAlternate) {
-                    textList.add(getDryStreak(displayDryStreakAlternateCount));
                 }
             }
         }
@@ -406,14 +395,38 @@ public class FishTrackerHudHandler {
                     textList.add(getDryStreak(displayDryStreakFabledCount));
                 }
             }
-            if(config.fishTracker.fishTrackerToggles.variantToggles.showFrozen) {
+
+            //EVENT FISHES
+            if(config.fishevents.variantToggles.showAlternate) {
+                textList.add(TextHelper.concat(
+                        Constant.ALTERNATE.TAG,
+                        Text.literal(" "),
+                        Text.literal(getNumber(displayAlternateCount)),
+                        getPercentage(displayAlternateCount, displayFishCaughtCount)
+                ));
+                if(config.fishevents.dryStreakToggles.showAlternate) {
+                    textList.add(getDryStreak(displayDryStreakAlternateCount));
+                }
+            }
+            if(config.fishevents.variantToggles.showSpooky) {
+                textList.add(TextHelper.concat(
+                        Constant.SPOOKY.TAG,
+                        Text.literal(" "),
+                        Text.literal(getNumber(displaySpookyCount)),
+                        getPercentage(displaySpookyCount, displayFishCaughtCount)
+                ));
+                if(config.fishevents.dryStreakToggles.showSpooky) {
+                    textList.add(getDryStreak(displayDryStreakSpookyCount));
+                }
+            }
+            if(config.fishevents.variantToggles.showFrozen) {
                 textList.add(TextHelper.concat(
                         Constant.FROZEN.TAG,
                         Text.literal(" "),
                         Text.literal(getNumber(displayFrozenCount)),
                         getPercentage(displayFrozenCount, displayFishCaughtCount)
                 ));
-                if(config.fishTracker.fishTrackerToggles.dryStreakToggles.showFrozen) {
+                if(config.fishevents.dryStreakToggles.showFrozen) {
                     textList.add(getDryStreak(displayDryStreakFrozenCount));
                 }
             }

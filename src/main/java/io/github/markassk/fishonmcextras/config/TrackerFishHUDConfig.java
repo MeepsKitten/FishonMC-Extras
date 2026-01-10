@@ -93,7 +93,7 @@ public class TrackerFishHUDConfig {
             }
 
             @ConfigEntry.Gui.CollapsibleObject
-            public FishEventToggles fisheventToggles = new FishEventToggles();
+            public FishEventToggles fishEventToggles = new FishEventToggles();
             public static class FishEventToggles {
                 @ConfigEntry.Gui.CollapsibleObject
                 public RarityToggles rarityToggles = new RarityToggles();

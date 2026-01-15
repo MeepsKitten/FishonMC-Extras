@@ -93,6 +93,47 @@ public class TrackerFishHUDConfig {
             }
 
             @ConfigEntry.Gui.CollapsibleObject
+            public DryStreakMessageToggles dryStreakMessageToggles = new DryStreakMessageToggles();
+            public static class DryStreakMessageToggles {
+                @ConfigEntry.Gui.CollapsibleObject
+                public RarityMessageToggles rarityMessageToggles = new RarityMessageToggles();
+                public static class RarityMessageToggles {
+                    public boolean showCommon = false;
+                    public boolean showRare = false;
+                    public boolean showEpic = false;
+                    public boolean showLegendary = false;
+                    public boolean showMythical = false;
+                }
+
+                @ConfigEntry.Gui.CollapsibleObject
+                public SizeMessageToggles sizeMessageToggles = new SizeMessageToggles();
+                public static class SizeMessageToggles {
+                    public boolean showBaby = false;
+                    public boolean showJuvenile = false;
+                    public boolean showAdult = false;
+                    public boolean showLarge = false;
+                    public boolean showGigantic = true;
+                }
+
+                @ConfigEntry.Gui.CollapsibleObject
+                public VariantMessageToggles variantMessageToggles = new VariantMessageToggles();
+                public static class VariantMessageToggles {
+                    public boolean showAlbino = true;
+                    public boolean showMelanistic = true;
+                    public boolean showTrophy = true;
+                    public boolean showFabled = true;
+                }
+
+                @ConfigEntry.Gui.CollapsibleObject
+                public OtherMessageToggles otherMessageToggles = new OtherMessageToggles();
+                public static class OtherMessageToggles {
+                    public boolean showPet = true;
+                    public boolean showShard = true;
+                    public boolean showLightningBottle = true;
+                }
+            }
+
+            @ConfigEntry.Gui.CollapsibleObject
             public FishEventToggles fishEventToggles = new FishEventToggles();
             public static class FishEventToggles {
                 @ConfigEntry.Gui.CollapsibleObject

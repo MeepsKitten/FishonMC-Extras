@@ -7,6 +7,8 @@ public class TrackerBaitHUDConfig {
         public boolean showBaitHud = true;
         public boolean showBaitWarningHUD = true;
         public boolean rightAlignment = false;
+        @ConfigEntry.Gui.Tooltip
+        public boolean calculateLures = true;
         @ConfigEntry.BoundedDiscrete(min = 0, max = 100)
         public int hudY = 100;
         @ConfigEntry.BoundedDiscrete(min = 0, max = 100)

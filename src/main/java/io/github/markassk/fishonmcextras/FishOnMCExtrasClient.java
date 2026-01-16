@@ -100,6 +100,7 @@ public class FishOnMCExtrasClient implements ClientModInitializer {
                     OwnPlayerHandler.instance().tick(minecraftClient);
                     PlayerStatusHandler.instance().tick(minecraftClient);
                     TimerHandler.instance().tick();
+                    EventHandler.instance().onEventTick();
                 }
             }
         }

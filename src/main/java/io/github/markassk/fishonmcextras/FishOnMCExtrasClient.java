@@ -144,6 +144,7 @@ public class FishOnMCExtrasClient implements ClientModInitializer {
             PlayerStatusHandler.instance().onReceiveMessage(text);
             TimerHandler.instance().onReceiveMessage(text);
             EventHandler.instance().onReceiveMessage(text);
+            AutoTippingHandler.instance().onReceiveMessage(text);
         }
     }
 

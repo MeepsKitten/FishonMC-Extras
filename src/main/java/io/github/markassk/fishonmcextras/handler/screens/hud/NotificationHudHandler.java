@@ -105,6 +105,7 @@ public class NotificationHudHandler {
             // Wrong Bait Warning
             if(config.baitTracker.showBaitWarningHUD
                     && FishingRodHandler.instance().isWrongBait
+                    && FishingRodHandler.instance().fishingRod != null
                     && BossBarHandler.instance().currentLocation != Constant.CREW_ISLAND
                     && BossBarHandler.instance().currentLocation != Constant.SPAWNHUB
             ) {

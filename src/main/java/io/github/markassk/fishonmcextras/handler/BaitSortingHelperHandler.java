@@ -17,6 +17,8 @@ import net.minecraft.item.ItemStack;
 public class BaitSortingHelperHandler {
     private static BaitSortingHelperHandler INSTANCE = new BaitSortingHelperHandler();
 
+    public boolean toggle = false;
+
     public static BaitSortingHelperHandler instance() {
         if (INSTANCE == null) {
             INSTANCE = new BaitSortingHelperHandler();
@@ -25,29 +27,39 @@ public class BaitSortingHelperHandler {
     }
 
     public void renderItemMarker(DrawContext drawContext, ItemStack itemStack, int x, int y) {
-        boolean showOnlyOnPressingKeybind = FishOnMCExtrasConfig
-                .getConfig().baitSortingHelperVisibility.onlyShowOnPressingKeybind;
-        if (FOMCItem.isFOMCItem(itemStack)
-                && (!showOnlyOnPressingKeybind || KeybindHandler.instance().visualizeBaitSorting)) {
-            if (!isBait(itemStack)) {
-                return;
-            }
+        boolean showOnlyWhilePressingKeybind = FishOnMCExtrasConfig
+                .getConfig().baitSortingHelperVisibility.showOnlyWhilePressingKeybind;
 
-            Map<String, Integer> baitCounts = getCurBaits();
-            String baitKey = getBaitKey(itemStack);
+        if (!FOMCItem.isFOMCItem(itemStack)) {
+            return;
+        }
 
-            if (baitCounts.getOrDefault(baitKey, 0) > 1) {
-                int alphaInt = (int) (0.6f * 255f) << 24;
-                int rgb = ColorHelper.getClrFromString(baitKey);
+        boolean isActive = showOnlyWhilePressingKeybind
+                ? KeybindHandler.instance().visualizeBaitSorting
+                : BaitSortingHelperHandler.instance().toggle;
 
-                drawContext.getMatrices().push();
-                try {
-                    drawContext.getMatrices().translate(0, 0, 100);
-                    drawContext.fill(x, y, x + 16, y + 16,
-                            alphaInt | rgb);
-                } finally {
-                    drawContext.getMatrices().pop();
-                }
+        if (!isActive) {
+            return;
+        }
+
+        if (!isBait(itemStack)) {
+            return;
+        }
+
+        Map<String, Integer> baitCounts = getCurBaits();
+        String baitKey = getBaitKey(itemStack);
+
+        if (baitCounts.getOrDefault(baitKey, 0) > 1) {
+            int alphaInt = (int) (0.6f * 255f) << 24;
+            int rgb = ColorHelper.getClrFromString(baitKey);
+
+            drawContext.getMatrices().push();
+            try {
+                drawContext.getMatrices().translate(0, 0, 100);
+                drawContext.fill(x, y, x + 16, y + 16,
+                        alphaInt | rgb);
+            } finally {
+                drawContext.getMatrices().pop();
             }
         }
     }

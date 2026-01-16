@@ -22,6 +22,7 @@ public class Lure extends FOMCItem {
     public final String intricacy;
     public final List<LureStats> lureStats;
     public final String size;
+    public final String color;
 
     private Lure(NbtCompound nbtCompound, String type, CustomModelDataComponent customModelData) {
         super(type, Constant.valueOfId(nbtCompound.getString("rarity")));
@@ -30,6 +31,7 @@ public class Lure extends FOMCItem {
         this.counter = nbtCompound.getInt("counter");
         this.water = Constant.valueOfId(nbtCompound.getString("water"));
         this.intricacy = nbtCompound.getString("intricacy");
+        this.color = nbtCompound.getString("color");
         NbtList nbtList = nbtCompound.getList("base", NbtElement.LIST_TYPE);
         List<NbtCompound> nbtCompoundList = new ArrayList<>();
         for (int i = 0; i < nbtList.size(); i++) {

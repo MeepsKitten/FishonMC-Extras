@@ -14,8 +14,10 @@ public class KeybindHandler {
 
     public final AdvancedKeyBinding openConfigKeybind = new AdvancedKeyBinding("key.fishonmcextras.openconfig", GLFW.GLFW_KEY_O, "category.fishonmcextras.general");
     public final AdvancedKeyBinding openExtraInfoKeybind = new AdvancedKeyBinding("key.fishonmcextras.openextrainfo", GLFW.GLFW_KEY_Z, "category.fishonmcextras.general");
+    public final AdvancedKeyBinding baitSortingHelper = new AdvancedKeyBinding("key.fishonmcextras.baitsortinghelper", GLFW.GLFW_KEY_B, "category.fishonmcextras.general");
 
     public boolean showExtraInfo = false;
+    public boolean visualizeBaitSorting = false;
 
     public static KeybindHandler instance() {
         if (INSTANCE == null) {
@@ -27,7 +29,8 @@ public class KeybindHandler {
     public void init() {
         KeybindHandler.register(
                 this.openConfigKeybind,
-                this.openExtraInfoKeybind
+                this.openExtraInfoKeybind, 
+                this.baitSortingHelper
         );
     }
 
@@ -36,6 +39,7 @@ public class KeybindHandler {
 
         if(minecraftClient.currentScreen != null) {
             this.showExtraInfo = InputUtil.isKeyPressed(MinecraftClient.getInstance().getWindow().getHandle(), ((KeyBindingAccessor) openExtraInfoKeybind).getBoundKey().getCode());
+            this.visualizeBaitSorting = InputUtil.isKeyPressed(MinecraftClient.getInstance().getWindow().getHandle(), ((KeyBindingAccessor) baitSortingHelper).getBoundKey().getCode());
         }
     }
 

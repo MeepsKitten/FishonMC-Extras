@@ -332,6 +332,8 @@
   "text.autoconfig.fishonmcextras.option.autoTip.reactionTipAmount": "Tip Amount",
   "text.autoconfig.fishonmcextras.option.autoTip.autoTipall": "Automatically /tipall [DISABLED]",
   "text.autoconfig.fishonmcextras.option.autoTip.autoTipall.@Tooltip": "§o/tipall is used when someone enables a Booster [DISABLED]",
+  "text.autoconfig.fishonmcextras.option.autoTip.disableManualTippingMsg": "Disable manual tip message",
+  "text.autoconfig.fishonmcextras.option.autoTip.disableManualTippingMsg.@Tooltip": "§7Removes the \"Want to tip...\" chat message when someone wins a reaction.",
 
   "text.autoconfig.fishonmcextras.option.baitSortingHelperVisibility": "§f§lBait Sorting Helper Options",
   "text.autoconfig.fishonmcextras.option.baitSortingHelperVisibility.showOnlyWhilePressingKeybind": "Only show while holding the keybind",

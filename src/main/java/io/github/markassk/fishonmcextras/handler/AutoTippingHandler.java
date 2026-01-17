@@ -72,7 +72,7 @@ public class AutoTippingHandler {
 			boolean autoTip = FishOnMCExtrasConfig.getConfig().autoTip.autoTipReactions;
 			String payCommand = "/pay " + username + " " + amount;
 
-			if (!autoTip) {
+			if (!autoTip && !FishOnMCExtrasConfig.getConfig().autoTip.disableManualTippingMsg) {
 				client.inGameHud.getChatHud().addMessage(
 						Text.empty()
 								.append(Text.literal("FoE ").formatted(Formatting.DARK_GREEN, Formatting.BOLD))
@@ -90,6 +90,10 @@ public class AutoTippingHandler {
 										.withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, Text.literal(payCommand)))));
 				return;
 			}
+
+            if (!autoTip) {
+                return;
+            }
 
 			if (client.player.networkHandler != null) {
 				client.inGameHud.getChatHud().addMessage(

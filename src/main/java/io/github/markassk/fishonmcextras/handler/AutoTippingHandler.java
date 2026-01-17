@@ -1,7 +1,6 @@
 package io.github.markassk.fishonmcextras.handler;
 
 import io.github.markassk.fishonmcextras.config.FishOnMCExtrasConfig;
-import io.github.markassk.fishonmcextras.util.TextHelper;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -39,14 +38,6 @@ public class AutoTippingHandler {
 			String username = m.group(1);
 			onReceiveReactions(username, message);
 		}
-
-		else {
-			p = Pattern.compile("BOOSTER »[\\s\\S]*\\(\\/tipall\\)");
-			m = p.matcher(plain);
-			if (m.find()) {
-				onReceiveBooster(message);
-			}
-		}
 	}
 
 	private void onReceiveReactions(String username, Text message) {
@@ -82,71 +73,36 @@ public class AutoTippingHandler {
 			String payCommand = "/pay " + username + " " + amount;
 
 			if (!autoTip) {
-				client.inGameHud.getChatHud().addMessage(TextHelper.concat(
-						Text.literal("FoE ").formatted(Formatting.DARK_GREEN, Formatting.BOLD),
-						Text.literal("| ").formatted(Formatting.DARK_GRAY),
-						Text.literal("[Tip " + username + " $" + amount + "]")
-								.setStyle(
-										Style.EMPTY
-												.withClickEvent(
-														new ClickEvent(ClickEvent.Action.RUN_COMMAND, payCommand))
-												.withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT,
-														Text.literal(payCommand))))));
+				client.inGameHud.getChatHud().addMessage(
+						Text.empty()
+								.append(Text.literal("FoE ").formatted(Formatting.DARK_GREEN, Formatting.BOLD))
+								.append(Text.literal("| ").formatted(Formatting.DARK_GRAY))
+								.append(Text.literal("Want to tip ").formatted(Formatting.GRAY))
+								.append(Text.literal(username).formatted(Formatting.WHITE))
+								.append(Text.literal(" $").formatted(Formatting.DARK_GREEN))
+								.append(Text.literal(String.valueOf(amount)).formatted(Formatting.GREEN))
+								.append(Text.literal("? ").formatted(Formatting.GRAY))
+								.append(Text.literal("[").formatted(Formatting.DARK_GRAY))
+								.append(Text.literal("Click").formatted(Formatting.YELLOW))
+								.append(Text.literal("]").formatted(Formatting.DARK_GRAY))
+								.setStyle(Style.EMPTY
+										.withClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, payCommand))
+										.withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, Text.literal(payCommand)))));
 				return;
 			}
 
 			if (client.player.networkHandler != null) {
-				client.inGameHud.getChatHud().addMessage(TextHelper.concat(
-						Text.literal("FoE ").formatted(Formatting.DARK_GREEN, Formatting.BOLD),
-						Text.literal("| ").formatted(Formatting.DARK_GRAY),
-						Text.literal("Tipping " + username + " $" + amount).formatted(Formatting.GREEN)));
+				client.inGameHud.getChatHud().addMessage(
+						Text.empty()
+								.append(Text.literal("FoE ").formatted(Formatting.DARK_GREEN, Formatting.BOLD))
+								.append(Text.literal("| ").formatted(Formatting.DARK_GRAY))
+								.append(Text.literal("You Auto tipped ").formatted(Formatting.GRAY))
+								.append(Text.literal(username).formatted(Formatting.WHITE))
+								.append(Text.literal(" $").formatted(Formatting.DARK_GREEN))
+								.append(Text.literal(String.valueOf(amount)).formatted(Formatting.GREEN))
+								.append(Text.literal("!").formatted(Formatting.GRAY)));
 				client.player.networkHandler.sendChatCommand("pay " + username + " " + amount);
 			}
 		});
 	}
-
-
-	private void onReceiveBooster(Text message) {
-		MinecraftClient client = MinecraftClient.getInstance();
-		client.execute(() -> {
-			if (client.player == null) {
-				return;
-			}
-
-			if (client.inGameHud == null) {
-				return;
-			}
-
-			/* Disabled due to Staff disallowing automatic /tipall usage for non Admirals
-			boolean autoTip = FishOnMCExtrasConfig.getConfig().autoTip.autoTipall;
-			*/
-			boolean autoTip = false;
-			String payAllCommand = "/tipall";
-
-			if (!autoTip) {
-				client.inGameHud.getChatHud().addMessage(TextHelper.concat(
-						Text.literal("FoE ").formatted(Formatting.DARK_GREEN, Formatting.BOLD),
-						Text.literal("| ").formatted(Formatting.DARK_GRAY),
-						Text.literal("[Tipall]")
-								.setStyle(
-										Style.EMPTY
-												.withClickEvent(
-														new ClickEvent(ClickEvent.Action.RUN_COMMAND, payAllCommand))
-												.withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT,
-														Text.literal(payAllCommand))))));
-				return;
-			}
-			
-			/* Disabled due to Staff disallowing automatic /tipall usage for non Admirals
-			if (client.player.networkHandler != null) {
-				client.inGameHud.getChatHud().addMessage(TextHelper.concat(
-						Text.literal("FoE ").formatted(Formatting.DARK_GREEN, Formatting.BOLD),
-						Text.literal("| ").formatted(Formatting.DARK_GRAY),
-						Text.literal("Tipping Boosters").formatted(Formatting.GREEN)));
-				client.player.networkHandler.sendChatCommand("tipall");
-			}
-			*/
-		});
-	}
-	
 }

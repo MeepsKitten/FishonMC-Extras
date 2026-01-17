@@ -326,7 +326,7 @@
   "text.autoconfig.fishonmcextras.option.playerStatus": "§f§lPlayer Status Options",
   "text.autoconfig.fishonmcextras.option.playerStatus.showIsTyping": "Show marker when a player is typing",
 
-  "text.autoconfig.fishonmcextras.option.autoTip": "§f§lAuto Tip Options",
+  "text.autoconfig.fishonmcextras.option.autoTip": "§f§lTipping Options",
   "text.autoconfig.fishonmcextras.option.autoTip.autoTipReactions": "Automatically tip REACTIONS winner",
   "text.autoconfig.fishonmcextras.option.autoTip.autoTipReactions.@Tooltip": "§cOnly turn on if you are okay with automatically sending people money - you will not be getting any refunds.",
   "text.autoconfig.fishonmcextras.option.autoTip.reactionTipAmount": "Tip Amount",

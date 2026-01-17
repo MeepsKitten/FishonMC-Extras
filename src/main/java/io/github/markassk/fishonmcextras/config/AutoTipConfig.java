@@ -7,5 +7,7 @@ public class AutoTipConfig {
         @ConfigEntry.Gui.Tooltip
         public boolean autoTipReactions = false;
         public int reactionTipAmount = 1000;
+        @ConfigEntry.Gui.Tooltip
+        public boolean disableManualTippingMsg = false;
     }
 }

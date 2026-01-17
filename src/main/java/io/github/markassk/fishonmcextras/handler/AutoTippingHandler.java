@@ -91,6 +91,10 @@ public class AutoTippingHandler {
 				return;
 			}
 
+            if (!autoTip) {
+                return;
+            }
+
 			if (client.player.networkHandler != null) {
 				client.inGameHud.getChatHud().addMessage(
 						Text.empty()

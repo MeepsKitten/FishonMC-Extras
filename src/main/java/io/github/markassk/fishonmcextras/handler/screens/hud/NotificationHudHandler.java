@@ -234,6 +234,7 @@ public class NotificationHudHandler {
                 });
             }
 
+
             if(config.eventTracker.otherEventOptions.fabledOptions.showAlertHUD
                     && BossBarHandler.instance().currentLocation != Constant.CREW_ISLAND
                     && System.currentTimeMillis() - EventHandler.instance().fabledEventAlertTime <= config.eventTracker.otherEventOptions.fabledOptions.alertDismissSeconds * 1000L

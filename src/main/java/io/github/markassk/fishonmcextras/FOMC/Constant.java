@@ -62,10 +62,8 @@ public enum Constant {
     MELANISTIC("melanistic", Text.literal("\uF042").formatted(Formatting.WHITE), Defaults.DEFAULT_COLOR),
     TROPHY("trophy", Text.literal("\uF043").formatted(Formatting.WHITE), Defaults.DEFAULT_COLOR),
     FABLED("fabled", Text.literal("\uF044").formatted(Formatting.WHITE), Defaults.DEFAULT_COLOR),
-
-    // Event Variants
-    ALTERNATE("alternate", Text.literal("\uF098").formatted(Formatting.WHITE), Defaults.DEFAULT_COLOR),
     SPOOKY("spooky", Text.literal("\uF102").formatted(Formatting.WHITE), Defaults.DEFAULT_COLOR),
+    ALTERNATE("alternate", Text.literal("\uF098").formatted(Formatting.WHITE), Defaults.DEFAULT_COLOR),
     FROZEN("frozen", Text.literal("\uF179").formatted(Formatting.WHITE), Defaults.DEFAULT_COLOR),
 
 

@@ -1,6 +1,7 @@
 package io.github.markassk.fishonmcextras.handler;
 
 import io.github.markassk.fishonmcextras.config.FishOnMCExtrasConfig;
+import io.github.markassk.fishonmcextras.FishOnMCExtras;
 import me.shedaniel.autoconfig.AutoConfig;
 import net.minecraft.text.Text;
 
@@ -23,7 +24,7 @@ public class TimerHandler {
     public long moonTimer = 0L;
     public final long moonCycleTime = 160L * 60L * 1000L; // 160 minutes in milliseconds
     public long moonOffset = calculateMoonOffset(); // Calculate once at initialization
-
+    
     // Debug tracking
     private long lastBaitShopSeconds = -1;
     private long lastMoonSeconds = -1;
@@ -54,7 +55,7 @@ public class TimerHandler {
         this.moonTimer = moonCycleTime - ((currentTime + moonOffset) % moonCycleTime);
     }
 
-    public void onReceiveMessage(Text text) {
+    public boolean onReceiveMessage(Text text) {
         if(text.getString().startsWith("TACKLE SHOP »") && text.getString().contains("Tackle items restocked!")) {
             baitShopAlertTime = System.currentTimeMillis();
 
@@ -63,28 +64,29 @@ public class TimerHandler {
                 AutoConfig.getConfigHolder(FishOnMCExtrasConfig.class).save();
             }
         }
+        
+        return false; // Don't suppress any messages
     }
 
     private long calculateMoonOffset() {
         // Use fixed UTC+1 offset (not timezone-dependent, avoids DST issues)
-        java.time.ZoneOffset utc0 = java.time.ZoneOffset.ofHours(0);
+        java.time.ZoneOffset utcPlus1 = java.time.ZoneOffset.ofHours(1);
         java.time.Instant now = java.time.Instant.now();
-        java.time.ZonedDateTime utc0Now = now.atZone(utc0);
-
-        // Get midnight today in UTC+0
-        java.time.ZonedDateTime midnightUTC0 = utc0Now.toLocalDate().atStartOfDay(utc0);
-
-        //TODO FIX THIS SYSTEM
-        // First moon event of the day is at 01:03 UTC+0, plusHours(1).plusMinutes(3).plusSeconds(1) isn't perfectly synced.. but close enough.
-        java.time.ZonedDateTime firstMoonToday = midnightUTC0.plusHours(1).plusMinutes(3).plusSeconds(1);
-
+        java.time.ZonedDateTime utcPlus1Now = now.atZone(utcPlus1);
+        
+        // Get midnight today in UTC+1
+        java.time.ZonedDateTime midnightUTCPlus1 = utcPlus1Now.toLocalDate().atStartOfDay(utcPlus1);
+        
+        // First moon event of the day is at 00:02 UTC+1
+        java.time.ZonedDateTime firstMoonToday = midnightUTCPlus1.plusMinutes(2);
+        
         // Convert to milliseconds
         long firstMoonMillis = firstMoonToday.toInstant().toEpochMilli();
         long currentMillis = System.currentTimeMillis();
-
+        
         // Find the next moon event from the first one today
         long timeSinceFirst = currentMillis - firstMoonMillis;
-
+        
         // If we're before the first event today, use it directly
         long nextMoonMillis;
         if (timeSinceFirst < 0) {
@@ -95,26 +97,26 @@ public class TimerHandler {
             long nextCycleMillis = firstMoonMillis + ((cyclesElapsed + 1) * moonCycleTime);
             nextMoonMillis = nextCycleMillis;
         }
-
-        // Calculate offset so that: moonCycleTime - ((currentMillis + offset) % moonCycleTime)
+        
+        // Calculate offset so that: moonCycleTime - ((currentMillis + offset) % moonCycleTime) 
         // equals the time remaining until nextMoonMillis
         long timeUntilNext = nextMoonMillis - currentMillis;
-
+        
         // We want: moonCycleTime - ((currentMillis + offset) % moonCycleTime) = timeUntilNext
         // Therefore: (currentMillis + offset) % moonCycleTime = moonCycleTime - timeUntilNext
         // So: offset = (moonCycleTime - timeUntilNext - currentMillis) % moonCycleTime
-
+        
         long baseOffset = moonCycleTime - timeUntilNext - (currentMillis % moonCycleTime);
-
+        
         // For the timers to tick in sync, we need:
         // moonOffset % 1000 == (baitShopOffset + hiddenOffsetBaitShop) % 1000
         // This ensures both timers cross second boundaries at the same time
         long targetMod = (baitShopOffset + config.timerTracker.hiddenOffsetBaitShop) % 1000L;
         long currentMod = baseOffset % 1000L;
-
+        
         // Adjust to match the target modulo
         long adjustment = (targetMod - currentMod + 1000L) % 1000L;
-
+        
         return baseOffset + adjustment;
     }
 }

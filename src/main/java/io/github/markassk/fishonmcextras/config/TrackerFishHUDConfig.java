@@ -29,6 +29,7 @@ public class TrackerFishHUDConfig {
                 public boolean showShardCaught = true;
                 public boolean showShardPerHour = false;
                 public boolean showLightningBottleCaught = false;
+                public boolean showInfusionCapsuleCaught = false;
             }
 
             @ConfigEntry.Gui.CollapsibleObject
@@ -86,10 +87,12 @@ public class TrackerFishHUDConfig {
                 public boolean showMelanistic = true;
                 public boolean showTrophy = true;
                 public boolean showFabled = true;
+                public boolean showSpooky = true;
                 @ConfigEntry.Gui.PrefixText
                 public boolean showPet = false;
                 public boolean showShard = false;
                 public boolean showLightningBottle = false;
+                public boolean showInfusionCapsule = false;
             }
 
             @ConfigEntry.Gui.CollapsibleObject

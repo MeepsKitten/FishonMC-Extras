@@ -408,7 +408,7 @@ public class FishTrackerHudHandler {
                     textList.add(getDryStreak(displayDryStreakFabledCount));
                 }
             }
-            if(config.fishTracker.fishTrackerToggles.variantToggles.showSpooky) {
+            if(config.fishTracker.fishTrackerToggles.dryStreakToggles.showSpooky) {
                 textList.add(TextHelper.concat(
                         Constant.SPOOKY.TAG,
                         Text.literal(" "),

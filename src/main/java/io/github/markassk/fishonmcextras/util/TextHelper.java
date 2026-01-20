@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.mojang.serialization.JsonOps;
 import io.github.markassk.fishonmcextras.FOMC.Constant;
+import net.minecraft.text.HoverEvent;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
 import net.minecraft.text.TextCodecs;
@@ -43,16 +44,6 @@ public class TextHelper {
                 return String.format(Locale.US,"%.0f", d).replaceAll("[\\.,]$", "");
             }
         }
-    }
-
-    // Parse float that handles both comma and period decimal separators
-    public static float parseFloat(String s) {
-        if (s == null || s.isEmpty()) {
-            throw new NumberFormatException("Cannot parse empty string");
-        }
-        // Replace comma with period for decimal separator
-        String normalized = s.trim().replace(',', '.');
-        return Float.parseFloat(normalized);
     }
 
     // Parse float that handles both comma and period decimal separators
@@ -271,5 +262,36 @@ public class TextHelper {
         }
         
         return rootContent;
+    }
+
+    /**
+     * Extracts all hover texts from a Text object by traversing the Text tree
+     * and collecting all hover event texts.
+     */
+    public static List<Text> extractAllHoverTexts(Text text) {
+        List<Text> hoverTexts = new ArrayList<>();
+        if (text == null) {
+            return hoverTexts;
+        }
+
+        // Check if this text has a hover event
+        if (text.getStyle() != null && text.getStyle().getHoverEvent() != null) {
+            HoverEvent hoverEvent = text.getStyle().getHoverEvent();
+            // Check if it's a SHOW_TEXT action and extract the text
+            if (hoverEvent.getAction() == HoverEvent.Action.SHOW_TEXT) {
+                Object hoverValue = hoverEvent.getValue(HoverEvent.Action.SHOW_TEXT);
+                // In Minecraft 1.21.4, SHOW_TEXT value is directly a Text object
+                if (hoverValue instanceof Text hoverText) {
+                    hoverTexts.add(hoverText);
+                }
+            }
+        }
+
+        // Recursively check all siblings
+        for (Text sibling : text.getSiblings()) {
+            hoverTexts.addAll(extractAllHoverTexts(sibling));
+        }
+
+        return hoverTexts;
     }
 }

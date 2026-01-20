@@ -32,7 +32,21 @@ public class BaitHudHandler {
         if (tacklebox.getFirst() instanceof Lure firstLure
                 && FishOnMCExtrasConfig.getConfig().baitTracker.calculateLures) {
 
-            int lureQty = firstLure.calculateLures(tacklebox);
+            int lureQty = 0;
+            String name = firstLure.name;
+            String rarity = firstLure.rarity.ID;
+            String color = firstLure.color;
+
+            for (FOMCItem entry : tacklebox) {
+                if (entry instanceof Lure lure
+                        && lure.name.equals(name)
+                        && lure.rarity.ID.equals(rarity)
+                        && lure.color.equals(color)) {
+                    lureQty += lure.counter;
+                    continue;
+                }
+                break;
+            }
 
             if (lureQty > 0) {
                 return TextHelper.concat(

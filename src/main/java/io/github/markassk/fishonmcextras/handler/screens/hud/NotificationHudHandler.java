@@ -106,6 +106,7 @@ public class NotificationHudHandler {
             if(config.baitTracker.showBaitWarningHUD
                     && FishingRodHandler.instance().isWrongBait
                     && FishingRodHandler.instance().fishingRod != null
+                    && FishingRodHandler.instance().fishingRod != null
                     && BossBarHandler.instance().currentLocation != Constant.CREW_ISLAND
                     && BossBarHandler.instance().currentLocation != Constant.SPAWNHUB
             ) {
@@ -123,6 +124,7 @@ public class NotificationHudHandler {
                     textList.add(Text.empty());
                     textList.add(TextHelper.concat(
                             Text.literal("Your ").formatted(Formatting.RED),
+                            Text.literal(TextHelper.upperCaseAllFirstCharacter(lure.name)).formatted(Formatting.WHITE),
                             Text.literal(TextHelper.upperCaseAllFirstCharacter(lure.name)).formatted(Formatting.WHITE),
                             Text.literal(" has no use in ").formatted(Formatting.RED),
                             LocationInfo.valueOfId(BossBarHandler.instance().currentLocation.ID).WATER.TAG,
